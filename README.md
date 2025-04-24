@@ -101,9 +101,7 @@
 - **세부 업무:** 요구사항 명세서 작성 , 데이터베이스 ERD 설계명
 
 ---
-
-[요구 사항 명세](https://www.notion.so/1dfa02b1ffb180a283a1d624e982de61?pvs=21)
-
+https://www.notion.so/coffit23/1dfa02b1ffb180a283a1d624e982de61
 ---
 
 유스케이스 다이어그램
@@ -138,9 +136,7 @@
 - **기간:** 2025-04-24
 - **세부 업무:**  시스템 구현에 따른 스토리보드로 흐름 확인 및 피드백, 회고록 작성
 
-[BSC 치킨 : MSA 설계서](https://www.notion.so/BSC-MSA-1dfa02b1ffb1801b97e3c414eb8f773e?pvs=21)
-
-[ 스토리보드](https://www.notion.so/1dfa02b1ffb1801ea97dc06fa043fdf7?pvs=21)
+https://www.notion.so/coffit23/BSC-MSA-1dfa02b1ffb1801b97e3c414eb8f773e
 
 ---
 
