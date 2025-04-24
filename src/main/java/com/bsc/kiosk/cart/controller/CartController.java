@@ -3,16 +3,15 @@ package com.bsc.kiosk.cart.controller;
 import com.bsc.kiosk.cart.model.dto.CartItemDto;
 import com.bsc.kiosk.cart.model.service.CartService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CartController {
     public static CartService cs = new CartService();
 
-    public static void main(String[] args) {
+    public void cartMenu() {
         Scanner sc = new Scanner(System.in);
-        while(true) {
+        while (true) {
             // 장바구니 조회
             List<CartItemDto> cartDtoList = cs.getCart();
 
