@@ -101,25 +101,32 @@ public class MenuService {
     }
 
 
-    public void showKeywordMenu(String searchInput) {
+
+    public boolean showKeywordMenu(String searchInput) {
+        Connection con = getConnection();
+        List<MenuDTO> allMenu = mr.findAllmenu(con);
+        close(con);
+        List<MenuDTO> menuDto = new ArrayList<>();
         while (true) {
-            Connection con = getConnection();
-            List<MenuDTO> allMenu = mr.findAllmenu(con);
-            close(con);
-            boolean found = false;
             for (MenuDTO menu : allMenu) {
                 if (menu.getMenuName().toLowerCase().contains(searchInput.toLowerCase())) {
-                    System.out.println(menu);
-                    found = true;
+                    menuDto.add(menu);
                 }
             }
-            if (found) {
-                break;
+            if (menuDto.isEmpty()) {
+                System.out.println('\n' + "<검색 결과가 없습니다.>");
+                return false;
             } else {
-                System.out.println("검색 결과가 없습니다. 다시 입력해주세요.");
+                for (MenuDTO m : menuDto) {
+                    System.out.println(m);
+                    return true;
+                }
             }
         }
+
     }
+
+
 }
 
 
