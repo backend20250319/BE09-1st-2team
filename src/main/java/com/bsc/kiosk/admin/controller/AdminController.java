@@ -41,14 +41,13 @@ public class AdminController {
     public void insertMenu() {
         AdminService admin = new AdminService();
         Scanner sc = new Scanner(System.in);
-        System.out.print("카테고리 ID를 입력해주세요(1. 치킨 2.사이드 3.음료/주류) : ");
+        System.out.print("카테고리 ID를 입력해주세요([1] 치킨  [2] 사이드  [3] 음료/주류) : ");
         int id = sc.nextInt();
         System.out.print("메뉴명을 입력해주세요 : ");
         String menu = sc.next();
         System.out.print("가격을 입력해주세요 : ");
         int price = sc.nextInt();
         AdminDTO admins = new AdminDTO(id, menu, price);
-        System.out.println("[Application] main() : admins ====> " + admins);
         admin.insertMenu(admins);
 
     }
@@ -66,7 +65,6 @@ public class AdminController {
         String is_sold_out = sc.next().toUpperCase();
 
         AdminDTO admins = new AdminDTO(id, menu, price, is_sold_out);
-        System.out.println("[Application] main() : admins ====> " + admins);
         admin.updateMenu(admins);
     }
 
