@@ -1,18 +1,20 @@
 package com.bsc.kiosk.payment.model.dao;
 
+import com.bsc.kiosk.admin.model.dto.AdminDTO;
 import com.bsc.kiosk.cart.model.dto.CartItemDto;
+import com.bsc.kiosk.payment.model.dto.OrderDTO;
 import com.bsc.kiosk.payment.model.dto.PaymentDTO;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import static com.bsc.kiosk.common.JDBCTemplate.close;
+import static java.time.LocalDateTime.now;
 
 public class PaymentRepository {
 
@@ -111,5 +113,62 @@ public class PaymentRepository {
             close(rset);
         }
         return cartItemDtoList;
+    }
+
+    public int insertMenu(Connection con, OrderDTO order) {
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            String sql = prop.getProperty("insertOrder");
+            pstmt = con.prepareStatement(sql);
+            pstmt.setTimestamp(1, Timestamp.valueOf(order.getOrderTime()));
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+        return result;
+    }
+
+    public static int getOrderId(Connection con) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        int orderId = 0;
+
+        String sql = "SELECT MAX(order_id) FROM `order`";
+        try {
+            pstmt = con.prepareStatement(sql);
+            rset = pstmt.executeQuery();
+            if (rset.next()) {
+                orderId = rset.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+            close(rset);
+        }
+        return orderId;
+    }
+
+    public int insertOrderItem(Connection con, int orderId, CartItemDto item) {
+        PreparedStatement pstmt = null;
+        int result = 0;
+        try {
+            String sql = prop.getProperty("insertOrderItem");
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, orderId);
+            pstmt.setInt(2, item.getMenuId());
+            pstmt.setInt(3, item.getQuantity());
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+        return result;
     }
 }

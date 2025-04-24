@@ -6,4 +6,15 @@
         SELECT * FROM gifticon
 
     </entry>
+    <entry key="insertOrder">
+        INSERT INTO `order` (date_time)
+        VALUES (?)
+    </entry>
+    <entry key="insertOrderItem">
+        INSERT INTO order_item (order_id, menu_id, item_quantity)
+        VALUES (?, ?, ?)
+    </entry>
+
+
+
 </properties>
