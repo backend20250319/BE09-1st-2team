@@ -103,7 +103,7 @@
 ---
 요구사항 명세서
 
-[https://www.notion.so/coffit23/1dfa02b1ffb180a283a1d624e982de61](https://www.notion.so/1dfa02b1ffb180a283a1d624e982de61?pvs=21)
+https://www.notion.so/coffit23/1dfa02b1ffb180a283a1d624e982de61(https://www.notion.so/1dfa02b1ffb180a283a1d624e982de61?pvs=21)
 ---
 
 유스케이스 다이어그램
