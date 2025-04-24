@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment/>
+    <entry key="selectChickenMenu">
+        SELECT
+              menu_name
+            , price
+            , menu_id
+         FROM
+              menu
+        WHERE
+              menu_category_id = 1;
+    </entry>
+    <entry key="selectSideMenu">
+        SELECT
+              menu_name
+            , price
+            , menu_id
+        FROM
+              menu
+        WHERE
+              menu_category_id = 2;
+    </entry>
+    <entry key="selectDrinkMenu">
+        SELECT
+              menu_name
+            , price
+            , menu_id
+        FROM
+              menu
+        WHERE
+              menu_category_id = 3;
+    </entry>
+    <entry key="searchAllMenu">
+        SELECT
+              menu_id
+            , menu_name
+            , price
+        FROM
+              menu
+    </entry>
+    <entry key="getSizeOfBoard1">
+        SELECT
+              COUNT(*)
+        FROM
+              menu
+        WHERE
+              menu_category_id = 1;
+    </entry>
+    <entry key="getSizeOfBoard2">
+        SELECT
+              COUNT(*)
+        FROM
+              menu
+        WHERE
+              menu_category_id = 2;
+    </entry>
+    <entry key="getSizeOfBoard3">
+        SELECT
+              COUNT(*)
+        FROM
+              menu
+        WHERE
+              menu_category_id = 3;
+    </entry>
+    <entry key="getMenuIdsByCategory">
+        SELECT
+        menu_id
+        FROM
+        menu
+        WHERE
+        menu_category_id = ?;
+    </entry>
+</properties>
