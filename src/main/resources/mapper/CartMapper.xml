@@ -18,6 +18,12 @@
     </entry>
     <entry key="deleteCart">
         delete from cart
-        where menu_id = ?;
+        where menu_id = ?
+    </entry>
+    <entry key="deleteAllCart">
+        delete from cart
+    </entry>
+    <entry key="createCart">
+        insert into cart values(?, ?)
     </entry>
 </properties>
