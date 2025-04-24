@@ -67,7 +67,7 @@ public class MenuService {
             Scanner sc = new Scanner(System.in);
             System.out.print("원하시는 메뉴의 번호를 입력해주세요 : ");
             int menuId = sc.nextInt();
-            if (menuId < mr.findAllmenu().size()) {
+            if (menuId == 0 ) {
                 break;
             }
             System.out.print('\n' + "원하시는 수량을 입력해주세요 : ");

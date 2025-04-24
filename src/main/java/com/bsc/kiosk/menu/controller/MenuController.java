@@ -29,23 +29,21 @@ public class MenuController {
                 원하시는 메뉴 카테고리를 선택해주세요 :  """ + " ";
             System.out.print(category);
 
-            label :
-            while (true) {
-                int categoryInt = sc.nextInt();
-                switch (categoryInt) {
-                    case 1:
-                        ms.selectMenuIntoCart(ms.selectChickenMenu());
-                        break;
-                    case 2:
-                        ms.selectMenuIntoCart(ms.selectSideMenu());
-                        break;
-                    case 3:
-                        ms.selectMenuIntoCart(ms.selectDrinkMenu());
-                    case 0: return;
-                    default:
-                        System.out.println("번호를 다시 입력해주세요.");
-                }
+            int categoryInt = sc.nextInt();
+            switch (categoryInt) {
+                case 1:
+                    ms.selectMenuIntoCart(ms.selectChickenMenu());
+                    break;
+                case 2:
+                    ms.selectMenuIntoCart(ms.selectSideMenu());
+                    break;
+                case 3:
+                    ms.selectMenuIntoCart(ms.selectDrinkMenu());
+                case 0: return;
+                default:
+                    System.out.println("번호를 다시 입력해주세요.");
             }
+
 
         }
 
