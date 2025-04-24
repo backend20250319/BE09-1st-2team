@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PaymentController {
-
-        public static void main(String[] args) {
+    public static void Payment(){
             PaymentService ps = new PaymentService();
             CartService cs = new CartService();
             List<CartItemDto> cl = ps.getCart();
