@@ -108,19 +108,21 @@
 
 유스케이스 다이어그램
 
-![image.png](attachment:c16ff78f-0280-45ee-a737-b6e25844bce6:image.png)
+![스크린샷 2025-04-24 150245](https://github.com/user-attachments/assets/f914f3c7-5242-4953-9d40-2add13cb7e4f)
+
 
 ---
 
 메뉴구조도
 
-![image (2).png](attachment:483d48ea-410a-48e2-876c-398eb7c77e8b:image_(2).png)
+![image (2)](https://github.com/user-attachments/assets/835cac35-2437-4b15-a7c6-db6b204ba826)
+
 
 ---
 
 논리데이터베이스(ERD)
 
-![image (3).png](attachment:5210e50e-33b9-48a1-bd3b-bcaacd05e45a:image_(3).png)
+![image (3)](https://github.com/user-attachments/assets/b8fa3ac0-7610-4b3b-90f2-4ad11db48475)
 
 ---
 
