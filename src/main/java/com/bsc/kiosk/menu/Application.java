@@ -4,7 +4,9 @@ import com.bsc.kiosk.menu.controller.MenuController;
 
 public class Application {
     public static void main(String[] args) {
-        MenuController menuController = new MenuController();
-        menuController.categoryCheck();
+        MenuController mc = new MenuController();
+        mc.categoryCheck();
+        //mc.menuSearch();
+
     }
 }

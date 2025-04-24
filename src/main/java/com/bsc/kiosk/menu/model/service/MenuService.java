@@ -2,6 +2,7 @@ package com.bsc.kiosk.menu.model.service;
 
 import com.bsc.kiosk.menu.model.dao.MenuRepository;
 import com.bsc.kiosk.menu.model.dto.MenuDTO;
+import com.bsc.kiosk.cart.model.service.CartService;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import static com.bsc.kiosk.common.JDBCTemplate.getConnection;
 public class MenuService {
 
     private final MenuRepository mr;
+    CartService cs = new CartService();
 
     public MenuService() {
         mr = new MenuRepository();
@@ -21,47 +23,63 @@ public class MenuService {
 
 
     public int selectChickenMenu() {
-        System.out.println("[MenuService] selectChickenMenu() : 메뉴 조회 성공 - 개발 완료 후 삭제 구문");
         Connection con = getConnection();
         List<MenuDTO> chickenList = mr.getChickenMenu(con);
         close(con);
+        System.out.println("");
+        System.out.println("======== 치킨 카테고리 ========");
         for (MenuDTO menu : chickenList) {
-            System.out.println(menu);
+            System.out.println(menu.toString());
         }
-        return 1;
+        System.out.println("0 : 뒤로가기");
+        return 0;
     }
 
     public int selectSideMenu() {
-        System.out.println("[MenuService] selectSideMenu() : 메뉴 조회 성공 - 개발 완료 후 삭제 구문");
         Connection con = getConnection();
         List<MenuDTO> sideList = mr.getSideMenu(con);
         close(con);
+        System.out.println("");
+        System.out.println("======== 사이드 카테고리 ========");
         for (MenuDTO menu : sideList) {
-            System.out.println(menu);
+            System.out.println(menu.toString());
         }
-        return 2;
+        return  0;
     }
 
     public int selectDrinkMenu() {
-        System.out.println("[MenuService] selectDrinkMenu() : 메뉴 조회 성공 - 개발 완료 후 삭제 구문");
         Connection con = getConnection();
         List<MenuDTO> drinkList = mr.getDrinkMenu(con);
         close(con);
+        System.out.println("");
+        System.out.println("======== 음료/주류 카테고리 ========");
         for (MenuDTO menu : drinkList) {
-            System.out.println(menu);
+            System.out.println(menu.toString());
         }
-        return 3;
+        return 0;
     }
 
-
-    public void chickenIntoCart() {
+    public void selectMenuIntoCart(int a) {
+        System.out.println("");
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("원하시는 메뉴의 번호를 입력해주세요 : ");
+        int menuId = sc.nextInt();
+        if (menuId == 0) {
+            return;
+        }
+        System.out.println("원하시는 수량을 입력해주세요 : ");
+        int quantity = sc.nextInt();
+        mr.insertIntoCart(menuId, quantity);
     }
 
-    public void sideIntoCart() {
-    }
-
-    public void drinkIntoCart() {
+    public void showKeywordMenu(String searchInput) {
+            Connection con = getConnection();
+        List<MenuDTO> allMenu = mr.findAllmenu(con);
+        for (MenuDTO menu : allMenu) {
+            if (menu.getMenuName().toLowerCase().contains(searchInput.toLowerCase())) {
+                System.out.println(menu);
+            }
+        }
     }
 }
+

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import static com.bsc.kiosk.cart.controller.CartController.cs;
 import static com.bsc.kiosk.common.JDBCTemplate.close;
 
 public class MenuRepository {
@@ -39,6 +40,7 @@ public class MenuRepository {
                 MenuDTO menu = new MenuDTO();
                 menu.setMenuName(rset.getString("menu_name"));
                 menu.setPrice(rset.getInt("price"));
+                menu.setMenuId(rset.getInt("menu_id"));
                 chickenMenu.add(menu);
             }
         } catch (SQLException e) {
@@ -63,6 +65,7 @@ public class MenuRepository {
                 MenuDTO menu = new MenuDTO();
                 menu.setMenuName(rset.getString("menu_name"));
                 menu.setPrice(rset.getInt("price"));
+                menu.setMenuId(rset.getInt("menu_id"));
                 chickenMenu.add(menu);
             }
         } catch (SQLException e) {
@@ -88,6 +91,7 @@ public class MenuRepository {
                 MenuDTO menu = new MenuDTO();
                 menu.setMenuName(rset.getString("menu_name"));
                 menu.setPrice(rset.getInt("price"));
+                menu.setMenuId(rset.getInt("menu_id"));
                 chickenMenu.add(menu);
             }
         } catch (SQLException e) {
@@ -100,4 +104,32 @@ public class MenuRepository {
     }
 
 
+    public List<MenuDTO> findAllmenu(Connection con) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = prop.getProperty("searchAllMenu");
+        List<MenuDTO> allMenu = null;
+        try {
+            pstmt = con.prepareStatement(sql);
+            rset = pstmt.executeQuery();
+            allMenu = new ArrayList<>();
+            while(rset.next()) {
+                MenuDTO menu = new MenuDTO();
+                menu.setMenuId(rset.getInt("menu_id"));
+                menu.setMenuName(rset.getString("menu_name"));
+                menu.setPrice(rset.getInt("price"));
+                allMenu.add(menu);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+            close(rset);
+        }
+        return allMenu;
+    }
+
+    public void insertIntoCart(int menuId, int quantity) {
+        cs.createCart(menuId, quantity);
+    }
 }
