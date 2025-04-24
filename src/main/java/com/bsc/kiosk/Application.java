@@ -55,9 +55,10 @@ public class Application {
                 메뉴를 선택해주세요 : """;
         Scanner sc = new Scanner(System.in);
 
-        System.out.print(msg);
-        int input = sc.nextInt();
         while (true) {
+            System.out.print(msg);
+            int input = sc.nextInt();
+
             switch (input) {
                 case 0: // 돌아가기
                     return;
@@ -68,7 +69,8 @@ public class Application {
                 case 3: // 장바구니
                     cartController.cartMenu();
                     break;
-                case 4: paymentController.Payment();// 결제하기
+                case 4:
+                    paymentController.Payment();// 결제하기
                     break;
             }
         }

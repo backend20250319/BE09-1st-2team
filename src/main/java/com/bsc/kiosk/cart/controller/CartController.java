@@ -20,7 +20,7 @@ public class CartController {
             for (int i = 0; i < cartDtoList.size(); i++) {
                 CartItemDto cartDto = cartDtoList.get(i);
                 System.out.println((i + 1) + ". " + cartDto.getMenuName()
-                        + "  |  " + cartDto.getPrice() * cartDto.getQuantity() + "원"
+                        + "  |  " + cartDto.getPrice() + "원"
                         + "  |  수량 " + cartDto.getQuantity());
                 totalPrice += cartDto.getPrice() * cartDto.getQuantity();
             }
@@ -30,9 +30,11 @@ public class CartController {
             System.out.print("\n메뉴를 선택해주세요 : ");
             int menuNum = sc.nextInt();
             sc.nextLine(); // 버퍼 제거
+            System.out.println("menuNum -------- " + menuNum);
 
             switch (menuNum) {
                 case 0: // 돌아가기
+                    System.out.println("돌아가기 ----------");
                     return;
                 case 1: // 수량 변경
                     System.out.print("수량을 변경할 항목 번호를 입력해주세요 :");
