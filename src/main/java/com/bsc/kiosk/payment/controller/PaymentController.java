@@ -4,9 +4,12 @@ import com.bsc.kiosk.Application;
 import com.bsc.kiosk.cart.model.dto.CartItemDto;
 import com.bsc.kiosk.cart.model.service.CartService;
 import com.bsc.kiosk.payment.model.dao.PaymentRepository;
+import com.bsc.kiosk.payment.model.dto.OrderDTO;
+import com.bsc.kiosk.payment.model.dto.OrderItemDTO;
 import com.bsc.kiosk.payment.model.dto.PaymentDTO;
 import com.bsc.kiosk.payment.model.service.PaymentService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -35,6 +38,8 @@ public class PaymentController {
                 switch (input) {
                     case 1:
                         System.out.println("카드 결제가 되셨습니다.");
+                        ps.insertOrder();
+                        ps.insertOrderItem();
                         Application.mainMenu();
                         break;
                     case 2:
@@ -77,5 +82,5 @@ public class PaymentController {
                 }
             }
         }
-    }
+}
 

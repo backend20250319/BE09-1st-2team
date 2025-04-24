@@ -1,14 +1,19 @@
 package com.bsc.kiosk.payment.model.service;
 
 import java.sql.Connection;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import com.bsc.kiosk.admin.model.dto.AdminDTO;
 import com.bsc.kiosk.cart.model.dao.CartRepository;
 import com.bsc.kiosk.cart.model.dto.CartItemDto;
 import com.bsc.kiosk.payment.model.dao.PaymentRepository;
+import com.bsc.kiosk.payment.model.dto.OrderDTO;
+import com.bsc.kiosk.payment.model.dto.OrderItemDTO;
 import com.bsc.kiosk.payment.model.dto.PaymentDTO;
-import static com.bsc.kiosk.common.JDBCTemplate.getConnection;
-import static com.bsc.kiosk.common.JDBCTemplate.close;
+
+import static com.bsc.kiosk.common.JDBCTemplate.*;
+import static com.bsc.kiosk.common.JDBCTemplate.rollback;
 
 public class PaymentService {
     private final PaymentRepository paymentRepository;
@@ -58,5 +63,30 @@ public class PaymentService {
         close(con);
         return cartItemDtoList;
     }
+
+    public void insertOrder() {
+        OrderDTO orders = new OrderDTO(LocalDateTime.now());
+        Connection con = getConnection();
+        int result = paymentRepository.insertMenu(con, orders);
+
+        // 수행 결과에 따라 Commit, Rollback 정해야한다.
+        if (result > 0) {
+            commit(con);
+        } else {
+            rollback(con);
+        }
+        close(con);
+    }
+
+    public void insertOrderItem() {
+        Connection con = getConnection();
+        int orderId = PaymentRepository.getOrderId(con);
+        List<CartItemDto> cartList = cartRepository.selectAllCart(con);
+        for (CartItemDto item : cartList) {
+            paymentRepository.insertOrderItem(con, orderId, item);
+        }
+        commit(con);
+    }
+
 }
 
