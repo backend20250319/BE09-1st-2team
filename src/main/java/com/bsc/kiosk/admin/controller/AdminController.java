@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class AdminController {
     public void adminMenu() {
         String adminMenu = """
-                ============== BSC ==============
+                ============== BSC 관리자 ==============
                 1. 메뉴 추가
                 2. 메뉴 수정
                 3. 메뉴 삭제
