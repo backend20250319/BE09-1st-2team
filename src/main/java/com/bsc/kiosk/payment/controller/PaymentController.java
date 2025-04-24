@@ -1,5 +1,6 @@
 package com.bsc.kiosk.payment.controller;
 
+import com.bsc.kiosk.Application;
 import com.bsc.kiosk.cart.model.dto.CartItemDto;
 import com.bsc.kiosk.cart.model.service.CartService;
 import com.bsc.kiosk.payment.model.dao.PaymentRepository;
@@ -32,10 +33,9 @@ public class PaymentController {
             while(true) {
                 int input = sc.nextInt();
                 switch (input) {
-                    case 0:
-                        break;
                     case 1:
                         System.out.println("카드 결제가 되셨습니다.");
+                        Application.mainMenu();
                         break;
                     case 2:
                         System.out.println("바코드를 입력해주세요");
@@ -49,8 +49,10 @@ public class PaymentController {
                                 int remain = sum - discount_price;
                                 System.out.println("\n남은 금액 " + remain + "원을 카드로 추가 결제합니다.");
                                 System.out.println("결제를 완료했습니다.\n");
+                                Application.mainMenu();
                             } else if (sum == discount_price) {
                                 System.out.println("결제를 완료했습니다.\n");
+                                Application.mainMenu();
                             } else {
                                 System.out.println("\n기프티콘 금액보다 주문 금액이 작습니다.");
                                 System.out.println("\n기프티콘을 사용하시겠습니까?");
@@ -59,6 +61,7 @@ public class PaymentController {
                                 int choice = sc.nextInt();
                                 if (choice == 1) {
                                     System.out.println("결제를 완료했습니다.\n");
+                                    Application.mainMenu();
                                 } else {
                                     System.out.println("결제를 취소했습니다.\n");
                                 }
@@ -67,8 +70,8 @@ public class PaymentController {
                             System.out.println("유효하지 않은 기프티콘 입니다.");
                         }break;
                         case 3:
-                            System.out.println("메인 메뉴로 돌아갑니다.");
-                        break;
+                            System.out.println("이전 메뉴로 돌아갑니다.");
+                            Application.orderMenu();
                         default:
                             System.out.println("잘못된 숫자를 입력하셨습니다.");
                 }

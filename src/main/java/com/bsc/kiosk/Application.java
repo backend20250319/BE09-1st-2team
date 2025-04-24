@@ -13,6 +13,10 @@ public class Application {
     public static PaymentController paymentController = new PaymentController();
 
     public static void main(String[] args) {
+        mainMenu();
+    }
+
+    public static void mainMenu() {
         String msg = """
                 ============== BSC ==============
                 0. 프로그램 종료
@@ -27,8 +31,8 @@ public class Application {
             System.out.print(msg);
             int input = sc.nextInt();
             switch (input) {
-                case 0: // 프로그램 종료
-                    return;
+                case 0:// 프로그램 종료
+                    System.exit(0);
                 case 1: // 주문하기
                     orderMenu();
                     break;
