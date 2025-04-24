@@ -17,7 +17,7 @@ public class AdminRepository {
     public AdminRepository() {
         prop = new Properties();
         try {
-            prop.loadFromXML(new FileInputStream("src/main/resources/mapper/AdminMapper.xml"));
+            prop.loadFromXML(new FileInputStream("src/main/resources/mapper/adminMapper.xml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
