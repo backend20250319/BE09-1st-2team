@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Properties;
 
 import static com.bsc.kiosk.common.JDBCTemplate.close;
-import static com.bsc.kiosk.common.JDBCTemplate.commit;
 
 public class CartRepository {
     private Properties prop = null;
@@ -86,6 +85,38 @@ public class CartRepository {
             pstmt.setInt(1, menuId);
 
             return pstmt.executeUpdate(); // delete count
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+    }
+
+    public int deleteAllCart(Connection con) {
+        PreparedStatement pstmt = null;
+        String sql = prop.getProperty("deleteAllCart");
+
+        try {
+            pstmt = con.prepareStatement(sql);
+
+            return pstmt.executeUpdate(); // delete count
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+    }
+
+    public int createCart(Connection con, int menuId, int quantity) {
+        PreparedStatement pstmt = null;
+        String sql = prop.getProperty("createCart");
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, menuId);
+            pstmt.setInt(2, quantity);
+
+
+            return pstmt.executeUpdate(); // create count
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
