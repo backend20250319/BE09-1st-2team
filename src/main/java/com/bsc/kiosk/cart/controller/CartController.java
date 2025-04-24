@@ -15,7 +15,7 @@ public class CartController {
             // 장바구니 조회
             List<CartItemDto> cartDtoList = cs.getCart();
 
-            System.out.println("=================== 장바구니 ===================");
+            System.out.println("========================= 장바구니 =========================");
             int totalPrice = 0;
             for (int i = 0; i < cartDtoList.size(); i++) {
                 CartItemDto cartDto = cartDtoList.get(i);
@@ -25,8 +25,8 @@ public class CartController {
                 totalPrice += cartDto.getPrice() * cartDto.getQuantity();
             }
             System.out.println("총 금액 : " + totalPrice + "원");
-            System.out.println("===============================================");
-            System.out.println("[0] 돌아가기    [1] 수량 변경    [2] 항목 삭제");
+            System.out.println("===========================================================");
+            System.out.println("[0] 돌아가기  [1] 수량 변경  [2] 항목 삭제  [3] 전체 삭제");
             System.out.print("\n메뉴를 선택해주세요 : ");
             int menuNum = sc.nextInt();
             sc.nextLine(); // 버퍼 제거
@@ -54,6 +54,9 @@ public class CartController {
 
                     int deleteMenuId = cartDtoList.get(deleteIndex).getMenuId();
                     cs.deleteCart(deleteMenuId);
+                    break;
+                case 3: // 전체 삭제
+                    cs.deleteAllCart();
                     break;
             }
         }
