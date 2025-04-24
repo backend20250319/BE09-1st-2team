@@ -11,6 +11,11 @@ public class MenuDTO {
     public MenuDTO() {
     }
 
+    public MenuDTO(String menuName, Integer price) {
+        this.menuName = menuName;
+        this.price = price;
+    }
+
     public MenuDTO(Integer menuId, Integer menuCategoryId, String menuName, Integer price, Boolean isSoldOut) {
         this.menuId = menuId;
         this.menuCategoryId = menuCategoryId;
@@ -57,5 +62,16 @@ public class MenuDTO {
 
     public void setSoldOut(Boolean soldOut) {
         isSoldOut = soldOut;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuDTO{" +
+                "menuId=" + menuId +
+                ", menuCategoryId=" + menuCategoryId +
+                ", menuName='" + menuName + '\'' +
+                ", price=" + price +
+                ", isSoldOut=" + isSoldOut +
+                '}';
     }
 }

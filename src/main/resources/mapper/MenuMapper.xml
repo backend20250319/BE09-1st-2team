@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment/>
+    <entry key="selectChickenMenu">
+        SELECT
+              menu_name
+            , price
+         FROM
+              menu
+        WHERE
+              menu_category_id = 1;
+    </entry>
+    <entry key="selectSideMenu">
+        SELECT
+              menu_name
+            , price
+        FROM
+              menu
+        WHERE
+              menu_category_id = 2;
+    </entry>
+    <entry key="selectDrinkMenu">
+        SELECT
+              menu_name
+            , price
+        FROM
+              menu
+        WHERE
+              menu_category_id = 3;
+    </entry>
+</properties>
