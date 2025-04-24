@@ -1,4 +1,4 @@
-package com.bsc.kiosk;
+package com.bsc.kiosk.menu;
 
 import com.bsc.kiosk.menu.controller.MenuController;
 
