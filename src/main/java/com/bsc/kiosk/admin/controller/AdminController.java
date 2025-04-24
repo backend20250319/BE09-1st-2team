@@ -12,7 +12,7 @@ public class AdminController {
                 1. 메뉴 추가
                 2. 메뉴 수정
                 3. 메뉴 삭제
-                4. 돌아가기
+                0. 돌아가기
                 
                 메뉴를 선택해주세요 : """;
         Scanner sc = new Scanner(System.in);
@@ -29,7 +29,7 @@ public class AdminController {
                 case 3:
                     deleteMenu();
                     break;
-                case 4:
+                case 0:
                     return;
                 default:
                     System.out.println("잘못된 번호를 입력하셨습니다.");
