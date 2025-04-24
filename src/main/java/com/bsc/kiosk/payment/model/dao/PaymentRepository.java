@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import static com.bsc.kiosk.common.JDBCTemplate.close;
-
+// 프로젝트의 필요한 데이터들을 DB에서 가져와 저장해주게 하는 코드
 public class PaymentRepository {
 
     private Properties prop = null;
@@ -84,7 +84,7 @@ public class PaymentRepository {
 
         return discount;
     }
-    public List<CartItemDto> selectAllCart(Connection con) {
+    public List<CartItemDto> selectAllCart(Connection con) { //List를 만들어서 Cart 컬럼에 있는 데이터들을 대조시켜 저장
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         String sql = prop.getProperty("selectAllCart");

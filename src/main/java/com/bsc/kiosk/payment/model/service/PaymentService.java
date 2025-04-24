@@ -9,7 +9,7 @@ import com.bsc.kiosk.payment.model.dao.PaymentRepository;
 import com.bsc.kiosk.payment.model.dto.PaymentDTO;
 import static com.bsc.kiosk.common.JDBCTemplate.getConnection;
 import static com.bsc.kiosk.common.JDBCTemplate.close;
-
+// DB에서 가져온 데이터를 활용하여 구현하는 코드
 public class PaymentService {
     private final PaymentRepository paymentRepository;
     private final CartRepository cartRepository;
