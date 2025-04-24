@@ -30,6 +30,7 @@ public class PaymentController {
                 System.out.println("총 금액 : " + sum);
             System.out.println("====================================================");
             System.out.println("[ 1 ] 카드 결제    [ 2 ] 기프티콘 사용    [ 3 ] 돌아가기 ");
+            System.out.println("메뉴를 선택해주세요 : ");
             while(true) {
                 int input = sc.nextInt();
                 switch (input) {
