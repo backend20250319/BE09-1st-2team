@@ -44,6 +44,7 @@ public class MenuService {
         for (MenuDTO menu : sideList) {
             System.out.println(menu.toString());
         }
+        System.out.println("0 : 뒤로가기");
         return  0;
     }
 
@@ -56,20 +57,23 @@ public class MenuService {
         for (MenuDTO menu : drinkList) {
             System.out.println(menu.toString());
         }
+        System.out.println("0 : 뒤로가기");
         return 0;
     }
 
     public void selectMenuIntoCart(int a) {
-        System.out.println("");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("원하시는 메뉴의 번호를 입력해주세요 : ");
-        int menuId = sc.nextInt();
-        if (menuId == 0) {
-            return;
+        while (true) {
+            System.out.println("");
+            Scanner sc = new Scanner(System.in);
+            System.out.print("원하시는 메뉴의 번호를 입력해주세요 : ");
+            int menuId = sc.nextInt();
+            if (menuId < mr.findAllmenu().size()) {
+                break;
+            }
+            System.out.print('\n' + "원하시는 수량을 입력해주세요 : ");
+            int quantity = sc.nextInt();
+            mr.insertIntoCart(menuId, quantity);
         }
-        System.out.println("원하시는 수량을 입력해주세요 : ");
-        int quantity = sc.nextInt();
-        mr.insertIntoCart(menuId, quantity);
     }
 
     public void showKeywordMenu(String searchInput) {

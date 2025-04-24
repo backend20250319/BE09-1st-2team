@@ -7,6 +7,5 @@ public class Application {
         MenuController mc = new MenuController();
         mc.categoryCheck();
         //mc.menuSearch();
-
     }
 }
