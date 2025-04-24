@@ -3,6 +3,7 @@ package com.bsc.kiosk;
 import com.bsc.kiosk.admin.controller.AdminController;
 import com.bsc.kiosk.cart.controller.CartController;
 import com.bsc.kiosk.cart.model.service.CartService;
+import com.bsc.kiosk.menu.controller.MenuController;
 import com.bsc.kiosk.payment.controller.PaymentController;
 
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class Application {
     public static CartController cartController = new CartController();
     public static AdminController adminController = new AdminController();
     public static PaymentController paymentController = new PaymentController();
+    public static MenuController menuController = new MenuController();
 
     public static void main(String[] args) {
         mainMenu();
@@ -23,7 +25,7 @@ public class Application {
                 1. 주문하기
                 2. 직원호출
                 ===============================
-                메뉴를 선택해주세요 : """;
+                메뉴를 선택해주세요 : """ + " ";
 
         Scanner sc = new Scanner(System.in);
 
@@ -47,7 +49,7 @@ public class Application {
     }
 
     public static void orderMenu() {
-        String msg = """
+        String msg = '\n' + """
                 ============== 주문하기==============
                 0. 돌아가기
                 1. 카테고리 조회
@@ -56,7 +58,7 @@ public class Application {
                 4. 결제하기
                 ==================================
                 
-                메뉴를 선택해주세요 : """;
+                메뉴를 선택해주세요 : """ + " ";
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -67,8 +69,10 @@ public class Application {
                 case 0: // 돌아가기
                     return;
                 case 1: // 카테고리 조회
+                    menuController.categoryCheck();
                     break;
                 case 2: // 메뉴 검색
+                    menuController.menuSearch();
                     break;
                 case 3: // 장바구니
                     cartController.cartMenu();

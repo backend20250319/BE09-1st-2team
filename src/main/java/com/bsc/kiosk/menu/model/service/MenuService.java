@@ -32,7 +32,7 @@ public class MenuService {
             System.out.println(menu.toString());
         }
         System.out.println("0 : 뒤로가기");
-        return 0;
+        return 1;
     }
 
     public int selectSideMenu() {
@@ -45,7 +45,7 @@ public class MenuService {
             System.out.println(menu.toString());
         }
         System.out.println("0 : 뒤로가기");
-        return  0;
+        return 2;
     }
 
     public int selectDrinkMenu() {
@@ -58,16 +58,30 @@ public class MenuService {
             System.out.println(menu.toString());
         }
         System.out.println("0 : 뒤로가기");
-        return 0;
+        return 3;
     }
 
-    public void selectMenuIntoCart(int a) {
+    public void selectMenuIntoCart (int boardKind) {
+        switch (boardKind) {
+            case 1: caseBoard(1);
+            break;
+            case 2: caseBoard(2);
+            break;
+            case 3: caseBoard(3);
+            break;
+        }
+    }
+
+    public void caseBoard (int boardKind) {
         while (true) {
             System.out.println("");
             Scanner sc = new Scanner(System.in);
             System.out.print("원하시는 메뉴의 번호를 입력해주세요 : ");
             int menuId = sc.nextInt();
-            if (menuId == 0 ) {
+            if (menuId == 0) {
+                break;
+            } else if (!mr.getMenuIdsByCategory(boardKind).contains(menuId)) {
+                System.out.println("해당 카테고리에 없는 번호입니다. 다시 입력해주세요.");
                 break;
             }
             System.out.print('\n' + "원하시는 수량을 입력해주세요 : ");
@@ -76,14 +90,38 @@ public class MenuService {
         }
     }
 
+    public void insertSearchedMenu () {
+        System.out.println("");
+        Scanner sc = new Scanner(System.in);
+        System.out.print("원하시는 메뉴의 번호를 입력해주세요 : ");
+        int menuId = sc.nextInt();
+        System.out.print('\n' + "원하시는 수량을 입력해주세요 : ");
+        int quantity = sc.nextInt();
+        mr.insertIntoCart(menuId, quantity);
+    }
+
+
     public void showKeywordMenu(String searchInput) {
+        while (true) {
             Connection con = getConnection();
-        List<MenuDTO> allMenu = mr.findAllmenu(con);
-        for (MenuDTO menu : allMenu) {
-            if (menu.getMenuName().toLowerCase().contains(searchInput.toLowerCase())) {
-                System.out.println(menu);
+            List<MenuDTO> allMenu = mr.findAllmenu(con);
+            close(con);
+            boolean found = false;
+            for (MenuDTO menu : allMenu) {
+                if (menu.getMenuName().toLowerCase().contains(searchInput.toLowerCase())) {
+                    System.out.println(menu);
+                    found = true;
+                }
+            }
+            if (found) {
+                break;
+            } else {
+                System.out.println("검색 결과가 없습니다. 다시 입력해주세요.");
             }
         }
     }
 }
+
+
+
 
