@@ -20,7 +20,7 @@ public class CartController {
             for (int i = 0; i < cartDtoList.size(); i++) {
                 CartItemDto cartDto = cartDtoList.get(i);
                 System.out.println((i + 1) + ". " + cartDto.getMenuName()
-                        + "  |  " + cartDto.getPrice() * cartDto.getQuantity() + "원"
+                        + "  |  " + cartDto.getPrice() + "원"
                         + "  |  수량 " + cartDto.getQuantity());
                 totalPrice += cartDto.getPrice() * cartDto.getQuantity();
             }
