@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import static com.bsc.kiosk.cart.controller.CartController.cs;
 import static com.bsc.kiosk.common.JDBCTemplate.close;
+import static com.bsc.kiosk.common.JDBCTemplate.getConnection;
 
 public class MenuRepository {
 
@@ -132,4 +133,45 @@ public class MenuRepository {
     public void insertIntoCart(int menuId, int quantity) {
         cs.createCart(menuId, quantity);
     }
+
+    public List<Integer> getMenuIdsByCategory(int categoryId) {
+        Connection con = getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Integer> menuIdList = new ArrayList<>();
+
+        String query = prop.getProperty("getMenuIdsByCategory");
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, categoryId);
+            rset = pstmt.executeQuery();
+            while (rset.next()) {
+                menuIdList.add(rset.getInt("menu_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+
+        return menuIdList;
+    }
+
+
+//    public List getSizeOfMenuBoard(int boardKind) {
+//        PreparedStatement pstmt = null;
+//        ResultSet rset = null;
+//        if (boardKind == 1) {
+//            String sql = prop.getProperty("getSizeOfBoard1");
+//        } else if (boardKind == 2) {
+//            String sql = prop.getProperty("getSizeOfBoard2");
+//        } else if (boardKind == 3) {
+//            String sql = prop.getProperty("getSizeOfBoard3");
+//        }
+//    }
+
+
+
 }

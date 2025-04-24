@@ -39,25 +39,24 @@ public class MenuController {
                     break;
                 case 3:
                     ms.selectMenuIntoCart(ms.selectDrinkMenu());
+                    break;
                 case 0: return;
                 default:
-                    System.out.println("번호를 다시 입력해주세요.");
+                    System.out.println("존재하지 않는 카테고리입니다. 번호를 다시 입력해주세요.");
             }
-
-
         }
 
     }
 
     public void menuSearch() {
+        Scanner sc = new Scanner(System.in);
          String search = """
                  ============== 메뉴 검색 ==============
-                 검색어를 입력해주세요 :  """ ;
-        Scanner sc = new Scanner(System.in);
-        System.out.println(search);
+                 검색어를 입력해주세요 :  """ + " " ;
+        System.out.print(search);
         String searchInput = sc.nextLine();
         ms.showKeywordMenu(searchInput);
-        ms.selectMenuIntoCart(0);
+        ms.insertSearchedMenu();
     }
 
 }

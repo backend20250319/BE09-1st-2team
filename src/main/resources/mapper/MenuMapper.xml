@@ -40,4 +40,36 @@
         FROM
               menu
     </entry>
+    <entry key="getSizeOfBoard1">
+        SELECT
+              COUNT(*)
+        FROM
+              menu
+        WHERE
+              menu_category_id = 1;
+    </entry>
+    <entry key="getSizeOfBoard2">
+        SELECT
+              COUNT(*)
+        FROM
+              menu
+        WHERE
+              menu_category_id = 2;
+    </entry>
+    <entry key="getSizeOfBoard3">
+        SELECT
+              COUNT(*)
+        FROM
+              menu
+        WHERE
+              menu_category_id = 3;
+    </entry>
+    <entry key="getMenuIdsByCategory">
+        SELECT
+        menu_id
+        FROM
+        menu
+        WHERE
+        menu_category_id = ?;
+    </entry>
 </properties>
