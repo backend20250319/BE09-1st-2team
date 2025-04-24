@@ -68,9 +68,17 @@ public class CartService {
 
     public void createCart(int menuId, int quantity) {
         Connection con = getConnection();
-        int createCount = cartRepository.createCart(con, menuId, quantity);
+        CartItemDto cartItem = cartRepository.selectCart(con, menuId);
+        int count;
 
-        if (createCount > 0) {
+        if (cartItem != null) {
+            quantity += cartItem.getQuantity();
+            count = cartRepository.updateCart(con, menuId, quantity);
+        } else {
+            count = cartRepository.createCart(con, menuId, quantity);
+        }
+
+        if (count > 0) {
             commit(con);
             System.out.println("장바구니 담기 완료");
         } else {

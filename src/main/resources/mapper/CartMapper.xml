@@ -4,10 +4,10 @@
     <comment/>
     <entry key="selectAllCart">
         select
-            c.menu_id,
-            menu_name,
-            price,
-            menu_quantity
+        c.menu_id,
+        menu_name,
+        price,
+        menu_quantity
         from cart c
         join menu m on m.menu_id = c.menu_id
     </entry>
@@ -25,5 +25,15 @@
     </entry>
     <entry key="createCart">
         insert into cart values(?, ?)
+    </entry>
+    <entry key="selectCart">
+        select
+        c.menu_id,
+        menu_name,
+        price,
+        menu_quantity
+        from cart c
+        join menu m on m.menu_id = c.menu_id
+        where m.menu_id = ?
     </entry>
 </properties>
