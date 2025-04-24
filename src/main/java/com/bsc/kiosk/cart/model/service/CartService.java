@@ -53,4 +53,30 @@ public class CartService {
         }
         close(con);
     }
+
+    public void deleteAllCart() {
+        Connection con = getConnection();
+        int deletedCount = cartRepository.deleteAllCart(con);
+
+        if (deletedCount > 0) {
+            commit(con);
+        } else {
+            rollback(con);
+        }
+        close(con);
+    }
+
+    public void createCart(int menuId, int quantity) {
+        Connection con = getConnection();
+        int createCount = cartRepository.createCart(con, menuId, quantity);
+
+        if (createCount > 0) {
+            commit(con);
+            System.out.println("장바구니 담기 완료");
+        } else {
+            rollback(con);
+            System.out.println("존재하지 않는 메뉴 ID 입니다.");
+        }
+        close(con);
+    }
 }
