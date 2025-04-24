@@ -3,12 +3,14 @@ package com.bsc.kiosk;
 import com.bsc.kiosk.admin.controller.AdminController;
 import com.bsc.kiosk.cart.controller.CartController;
 import com.bsc.kiosk.cart.model.service.CartService;
+import com.bsc.kiosk.payment.controller.PaymentController;
 
 import java.util.Scanner;
 
 public class Application {
     public static CartController cartController = new CartController();
     public static AdminController adminController = new AdminController();
+    public static PaymentController paymentController = new PaymentController();
 
     public static void main(String[] args) {
         String msg = """
@@ -66,7 +68,7 @@ public class Application {
                 case 3: // 장바구니
                     cartController.cartMenu();
                     break;
-                case 4: // 결제하기
+                case 4: paymentController.Payment();// 결제하기
                     break;
             }
         }
