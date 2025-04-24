@@ -101,6 +101,7 @@
 - **세부 업무:** 요구사항 명세서 작성 , 데이터베이스 ERD 설계명
 
 ---
+요구사항 명세서
 https://www.notion.so/coffit23/1dfa02b1ffb180a283a1d624e982de61
 ---
 
