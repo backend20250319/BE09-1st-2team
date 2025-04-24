@@ -41,6 +41,7 @@ public class PaymentController {
                         System.out.println("카드 결제가 되셨습니다.");
                         ps.insertOrder();
                         ps.insertOrderItem();
+                        cs.deleteAllCart();
                         Application.mainMenu();
                         break;
                     case 2:
@@ -54,9 +55,15 @@ public class PaymentController {
                                 int remain = sum - discount_price;
                                 System.out.println("\n남은 금액 " + remain + "원을 카드로 추가 결제합니다.");
                                 System.out.println("결제를 완료했습니다.\n");
+                                ps.insertOrder();
+                                ps.insertOrderItem();
+                                cs.deleteAllCart();
                                 Application.mainMenu();
                             } else if (sum == discount_price) {
                                 System.out.println("결제를 완료했습니다.\n");
+                                ps.insertOrder();
+                                ps.insertOrderItem();
+                                cs.deleteAllCart();
                                 Application.mainMenu();
                             } else {
                                 System.out.println("\n기프티콘 금액보다 주문 금액이 작습니다.");
@@ -66,9 +73,13 @@ public class PaymentController {
                                 int choice = sc.nextInt();
                                 if (choice == 1) {
                                     System.out.println("결제를 완료했습니다.\n");
+                                    ps.insertOrder();
+                                    ps.insertOrderItem();
+                                    cs.deleteAllCart();
                                     Application.mainMenu();
                                 } else {
                                     System.out.println("결제를 취소했습니다.\n");
+                                    cs.deleteAllCart();
                                 }
                             }
                         }else {
