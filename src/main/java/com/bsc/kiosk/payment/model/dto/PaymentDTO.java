@@ -1,5 +1,7 @@
 package com.bsc.kiosk.payment.model.dto;
 
+import com.bsc.kiosk.cart.model.dao.CartRepository;
+
 public class PaymentDTO {
     private String menu_name;
     private int price;
@@ -7,7 +9,6 @@ public class PaymentDTO {
     private int gift_id;
     private String barcode;
     private int discount;
-
     public PaymentDTO() {
         this.barcode = barcode;
         this.discount = discount;
@@ -75,6 +76,9 @@ public class PaymentDTO {
                 ", gift_id=" + gift_id +
                 ", discount=" + discount +
                 '}';
+    }
+    public CartRepository cartRepository() {
+        return cartRepository();
     }
 }
 
