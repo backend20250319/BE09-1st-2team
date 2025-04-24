@@ -66,12 +66,9 @@ public class MenuDTO {
 
     @Override
     public String toString() {
-        return "MenuDTO{" +
-                "menuId=" + menuId +
-                ", menuCategoryId=" + menuCategoryId +
-                ", menuName='" + menuName + '\'' +
-                ", price=" + price +
-                ", isSoldOut=" + isSoldOut +
-                '}';
+        return
+                "메뉴번호 : " + menuId + " | " +
+                "메뉴 : " + menuName + " | " +
+                "가격 : " + price ;
     }
 }

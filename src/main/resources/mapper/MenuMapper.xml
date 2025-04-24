@@ -6,6 +6,7 @@
         SELECT
               menu_name
             , price
+            , menu_id
          FROM
               menu
         WHERE
@@ -15,6 +16,7 @@
         SELECT
               menu_name
             , price
+            , menu_id
         FROM
               menu
         WHERE
@@ -24,9 +26,18 @@
         SELECT
               menu_name
             , price
+            , menu_id
         FROM
               menu
         WHERE
               menu_category_id = 3;
+    </entry>
+    <entry key="searchAllMenu">
+        SELECT
+              menu_id
+            , menu_name
+            , price
+        FROM
+              menu
     </entry>
 </properties>
