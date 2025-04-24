@@ -1,27 +1,36 @@
 package com.bsc.kiosk.payment.controller;
 
+import com.bsc.kiosk.cart.model.dto.CartItemDto;
+import com.bsc.kiosk.cart.model.service.CartService;
+import com.bsc.kiosk.payment.model.dao.PaymentRepository;
 import com.bsc.kiosk.payment.model.dto.PaymentDTO;
 import com.bsc.kiosk.payment.model.service.PaymentService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PaymentController {
 
         public static void main(String[] args) {
             PaymentService ps = new PaymentService();
+            CartService cs = new CartService();
+            List<CartItemDto> cl = ps.getCart();
             Scanner sc = new Scanner(System.in);
-            String menu = """
-                ============== 결제하기 ==============
-                0. 장바구니 조회
-                1. 카드 결제
-                2. 기프티콘 사용
-                3. 돌아가기 
-                ==================================
-                메뉴를 선택해주세요 : 
-               """;
-            System.out.println(menu);
+            System.out.println("=====================결제하기=========================");
+            System.out.println("주문 내역을 확인해주세요.");
+            int sum = 0;
+            for (int i =0; i<cl.size(); i++) {
+                System.out.println(cl.get(i).getMenuName() + " | "
+                                 + cl.get(i).getPrice() + " | 수량 "
+                                 + cl.get(i).getQuantity());
+                sum = sum + (cl.get(i).getPrice()*cl.get(i).getQuantity());
+
+            }
+                System.out.println("총 금액 : " + sum);
+            System.out.println("====================================================");
+            System.out.println("[ 1 ] 카드 결제    [ 2 ] 기프티콘 사용    [ 3 ] 돌아가기 ");
             while(true) {
-                System.out.println(menu);
                 int input = sc.nextInt();
                 switch (input) {
                     case 0:
@@ -35,14 +44,13 @@ public class PaymentController {
                         if (ps.isVaildBarcode(con)){
                             int discount_price = ps.getDiscountByBarcode(con);
                             System.out.println("총 주문 금액을 입력해주세요 (test) : ");
-                            int totalPrice = sc.nextInt();
                             System.out.println("기프티콘 금액 : " + discount_price + "원");
-                            System.out.println("총 주문 금액 : " + totalPrice + "원");
-                            if (totalPrice > discount_price) {
-                                int remain = totalPrice - discount_price;
+                            System.out.println("총 주문 금액 : " + sum  + "원");
+                            if (sum > discount_price) {
+                                int remain = sum - discount_price;
                                 System.out.println("\n남은 금액 " + remain + "원을 카드로 추가 결제합니다.");
                                 System.out.println("결제를 완료했습니다.\n");
-                            } else if (totalPrice == discount_price) {
+                            } else if (sum == discount_price) {
                                 System.out.println("결제를 완료했습니다.\n");
                             } else {
                                 System.out.println("\n기프티콘 금액보다 주문 금액이 작습니다.");

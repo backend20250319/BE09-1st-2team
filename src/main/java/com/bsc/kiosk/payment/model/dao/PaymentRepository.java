@@ -1,5 +1,6 @@
 package com.bsc.kiosk.payment.model.dao;
 
+import com.bsc.kiosk.cart.model.dto.CartItemDto;
 import com.bsc.kiosk.payment.model.dto.PaymentDTO;
 
 import java.sql.Connection;
@@ -83,5 +84,32 @@ public class PaymentRepository {
 
         return discount;
     }
+    public List<CartItemDto> selectAllCart(Connection con) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = prop.getProperty("selectAllCart");
+        System.out.println("sql = " + sql);
 
+        List<CartItemDto> cartItemDtoList = null;
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            rset = pstmt.executeQuery();
+            cartItemDtoList = new ArrayList<>();
+            while (rset.next()) {
+                CartItemDto cartItemDto = new CartItemDto((rset.getInt("menu_id"))
+                                                            , rset.getString("menu_name")
+                                                            , rset.getInt("price")
+                                                            ,rset.getInt("quantity"));
+                cartItemDtoList.add(cartItemDto);
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally{
+            close(pstmt);
+            close(rset);
+        }
+        return cartItemDtoList;
+    }
 }

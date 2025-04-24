@@ -3,6 +3,8 @@ package com.bsc.kiosk.payment.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.bsc.kiosk.cart.model.dao.CartRepository;
+import com.bsc.kiosk.cart.model.dto.CartItemDto;
 import com.bsc.kiosk.payment.model.dao.PaymentRepository;
 import com.bsc.kiosk.payment.model.dto.PaymentDTO;
 import static com.bsc.kiosk.common.JDBCTemplate.getConnection;
@@ -10,9 +12,10 @@ import static com.bsc.kiosk.common.JDBCTemplate.close;
 
 public class PaymentService {
     private final PaymentRepository paymentRepository;
-
+    private final CartRepository cartRepository;
     public PaymentService(){
         paymentRepository = new PaymentRepository();
+         cartRepository = new CartRepository();
     }
     public List<PaymentDTO> giftcon() {
 
@@ -49,5 +52,11 @@ public class PaymentService {
         }
         return discount;
     }
-
+    public List<CartItemDto> getCart() {
+        Connection con = getConnection();
+        List<CartItemDto> cartItemDtoList = cartRepository.selectAllCart(con);
+        close(con);
+        return cartItemDtoList;
+    }
 }
+
