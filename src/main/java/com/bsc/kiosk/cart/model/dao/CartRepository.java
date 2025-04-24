@@ -26,6 +26,34 @@ public class CartRepository {
         }
     }
 
+    public CartItemDto selectCart(Connection con, int menuId) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        String sql = prop.getProperty("selectCart");
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, menuId);
+            rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                CartItemDto cartItem = new CartItemDto(
+                        rset.getInt("menu_id"),
+                        rset.getString("menu_name"),
+                        rset.getInt("price"),
+                        rset.getInt("menu_quantity")
+                );
+                return cartItem;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+            close(rset);
+        }
+    }
+
     public List<CartItemDto> selectAllCart(Connection con) {
 
         PreparedStatement pstmt = null;
@@ -123,4 +151,5 @@ public class CartRepository {
             close(pstmt);
         }
     }
+
 }
