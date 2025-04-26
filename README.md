@@ -120,7 +120,7 @@ https://www.notion.so/coffit23/1dfa02b1ffb180a283a1d624e982de61
 
 ---
 
-논리데이터베이스(ERD)
+논리/물리 데이터모델링(ERD)
 
 ![image (3)](https://github.com/user-attachments/assets/b8fa3ac0-7610-4b3b-90f2-4ad11db48475)
 
