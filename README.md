@@ -148,7 +148,7 @@ https://www.notion.so/coffit23/BSC-MSA-1dfa02b1ffb1801b97e3c414eb8f773e
 - **세부 업무:** 시스템 테스트 및 프로젝트 설명
 
 ---
-## 스토리보드 및 회면설계서
+## 스토리보드 및 화면설계서
 ### 1. 메인 화면
 
 ![스크린샷 2025-04-24 153832](https://github.com/user-attachments/assets/f9385e4a-69c8-4864-9869-74dbb0149a68)
